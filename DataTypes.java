@@ -4,6 +4,7 @@ public class DataTypes {
 
         {// >>>>> Integers type datatype <<<<<
             /*
+             * Signed data type
              * byte(1 byte),
              * short(2 byte),
              * int(4 byte),
@@ -46,6 +47,7 @@ public class DataTypes {
             // >>>>> floating-point type datatype <<<<<<
 
             /*
+             * Signed data type
              * float (4 byte) & give 7 digits of accuracy
              * 
              * double (8 byte) & gives 17 digits of accuracy
@@ -56,8 +58,44 @@ public class DataTypes {
 
             float a = 120.5f;
             a = 1289.48F;
+            System.out.println(a);
+
+            double b = 145.362;
+            b = 1425.326d;
+            b = 14259.326D;
+            System.out.println(b);
 
         }
+        {
+            // Characters type datatype
+            /*
+             * char (2 bytes) unsigned data type
+             */
 
+            char ch = 'A';
+            System.out.println(ch);
+
+            char ch1 = 65; // ASCII value of 'A'=65
+            System.out.println(ch1);
+
+            ch1++;
+            System.out.println(ch1);
+
+            /*
+             * ASCI (1 byte)
+             * UNICODE (2 byte)
+             */
+
+        }
+        {
+            // boolean type datatype
+            /*
+             * boolean have tow value 'true' and 'false'
+             */
+            boolean bol = true;
+            boolean bol1 = false;
+            System.out.println(bol);
+            System.out.println(bol1);
+        }
     }
 }
