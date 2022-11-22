@@ -1,6 +1,6 @@
 public class BitwiseOperator {
 
-    // note bitwise operators work with int datatype only
+    // **** note bitwise operators work with int datatype only ****
 
     // Bitwise Operators
     // 1. "&", (Bitwise AND operator): returns bit by bit AND of input values.
