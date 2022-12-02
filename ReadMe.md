@@ -4,6 +4,17 @@
 - Literals
 - DataTypes
 - Type Conversion
+- Operators
+- Relational Operators
+- Bitwise Operators
+- Logical Operators
+- Ternary Operators
+- Switch Statement
+- If Else Statement
+- Loopes
+- Array
+- Console Input Output
+- Exceptions Handling
 ---
 
 # Types of Variables in Java
