@@ -1,4 +1,4 @@
-package OOPs;
+// package OOPs;
 
 public class UseRational {
     public static void main(String[] args) {

@@ -1,4 +1,4 @@
-package OOPs;
+// package OOPs;
 
 public class RationalNo {
     private int a;

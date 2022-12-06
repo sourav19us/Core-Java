@@ -1,4 +1,4 @@
-package OOPs;
+// package OOPs;
 
 public class Employes {
     private String name = ""; // instant variable
@@ -9,6 +9,18 @@ public class Employes {
         name = Ename;
         age = Eage;
         salary = Esalary;
+    }
+
+    public Employes(String name, int age, int salary) {
+        this.name = name;
+        this.age = age;
+        this.salary = salary;
+    }
+
+    public Employes() {
+        name = null;
+        age = 0;
+        salary = 0;
     }
 
     public void get() {
