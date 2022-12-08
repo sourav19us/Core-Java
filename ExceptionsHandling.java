@@ -8,6 +8,9 @@ public class ExceptionsHandling {
         } catch (Exception e) {
             System.out.println("Error is :-");
             System.out.println(e);
+            System.out.println(e.getMessage());
+        } finally {
+            System.out.println("'b' must be b!=0 ");
         }
     }
 }
