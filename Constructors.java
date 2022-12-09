@@ -15,6 +15,8 @@ public class Constructors {
         b = 0;
         d = 100;
         // c can not be changed
+        e++;
+        f++;
     }
 
     public Constructors(int a, int b, int d) {
@@ -22,6 +24,8 @@ public class Constructors {
         this.b = b;
         this.d = d;
         // c can not be changed
+        e++;
+        f++;
     }
 
     public Constructors(Constructors obj) {
