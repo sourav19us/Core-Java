@@ -15,6 +15,18 @@
 - Array
 - Console Input Output
 - Exceptions Handling
+- String and StringBuffer
+- Methods(instance and static)
+- varargs/ ... / variable length Argument 
+- "this" Variable
+- this() methode
+- Initialization Block (instance and static)
+- Constuctors
+- Access Attributes
+- Pakages
+- Import Static 
+- Inheritance
+- Methods Overloding and Methods Overriding
 ---
 
 # Types of Variables in Java
