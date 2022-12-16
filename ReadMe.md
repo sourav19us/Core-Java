@@ -27,6 +27,9 @@
 - Import Static 
 - Inheritance
 - Methods Overloding and Methods Overriding
+- Super() Methode
+- Polymorphism
+- Abstraction
 ---
 
 # Types of Variables in Java
