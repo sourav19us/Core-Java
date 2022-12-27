@@ -145,11 +145,13 @@ public class FileClassConstAndMethodes {
 
         File f9 = new File("E:/Java/FileClass/B.txt");
         File f10 = new File("E:/Java/FileClass/C.txt");
-        boolean r1, r2;
+        File f11 = new File("E:/Java/FileClass/TextFileDemo/proj/scr/main/D.txt");
+        boolean r1, r2, r3;
         try {
             r1 = f9.createNewFile();
             r2 = f10.createNewFile();
-            System.out.println(f9.getName() + "  " + f10.getName() + " <FILE> is Created");
+            r3 = f11.createNewFile();
+            System.out.println(f9.getName() + "  " + f10.getName() + "  " + f11.getName() + " <FILE> is Created");
         } catch (IOException e) {
             System.out.println(e.getMessage());
         }
