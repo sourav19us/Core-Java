@@ -20,6 +20,8 @@ public class MergeSmallFilesEx {
             }
             bis.close();
             fis.close();
+            File f1 = new File(path);
+            f1.delete();
         }
         bos.flush();
         bos.close();
