@@ -163,5 +163,6 @@ public class FileClassConstAndMethodes {
         }
 
         // 17. boolean renameTo(File)
+        // Try to rename “program1.txt” to “prog.txt”, “prog.txt” is a existing file in the f: drive .
     }
 }
