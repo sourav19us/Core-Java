@@ -84,6 +84,20 @@ public class StackClassEx3 {
                     }
 
                 }
+                if (arr[i] == '%') {
+                    String str3 = "" + s.pop();
+                    int c = Integer.parseInt(str3);
+                    if (!s.empty()) {
+                        String str4 = "" + s.pop();
+                        int d = Integer.parseInt(str4);
+                        s.push((c % d));
+                        System.out.println(s);
+                        continue;
+                    } else {
+                        System.out.println("Expression Invalid");
+                    }
+
+                }
             } else {
                 System.out.println("Enter Valid Expression");
                 break;
