@@ -6,20 +6,23 @@ public class UseEx {
         File f = new File("E:\\Java\\MultiThreading\\Files\\");
         String arr[] = f.list();
         System.out.println("no of file is " + arr.length);
-        for (String string : arr) {
-            System.out.println(string);
-            File f1 = new File(f.getPath() + string);
-            TextFilesEx tfx = new TextFilesEx();
+        File f1[] = new File[arr.length];
+        TextFilesEx tfx[] = new TextFilesEx[arr.length];
+        Read r[] = new Read[arr.length];
+        Write w[] = new Write[arr.length];
+        for (int i = 0; i < arr.length; i++) {
+            f1[i] = new File(f.getPath() + arr[i]);
+            tfx[i] = new TextFilesEx();
 
-            Read r = new Read(tfx, f1);
-            r.start();
+            r[i] = new Read(tfx[i], f1[i]);
+            r[i].start();
             try {
-                r.join();
+                r[i].join();
             } catch (Exception e) {
                 System.out.println(e.getMessage());
             }
-            Write w = new Write(tfx, f1);
-            w.start();
+            w[i] = new Write(tfx[i], f1[i]);
+            w[i].start();
         }
     }
 }
