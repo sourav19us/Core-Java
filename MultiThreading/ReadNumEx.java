@@ -28,7 +28,8 @@ public class ReadNumEx implements Runnable {
                     i++;
                 } else {
                     str = String.copyValueOf(ch, 0, i);
-                    no = no + Integer.parseInt(str);
+                    no = no + Long.parseLong(str);
+                    i = 0;
                 }
             }
             fis.close();
