@@ -7,12 +7,13 @@ public class NumUseEx {
         System.out.println("no of file is " + arr.length);
         int fno = arr.length;
         long lno = 0;
+        ReadNumEx r[] = new ReadNumEx[fno];
         for (int i = 0; i < arr.length; i++) {
             File fr = new File(f.getPath() + arr[i]);
-            ReadNumEx r = new ReadNumEx(fr);
-            Thread t1 = new Thread(r);
+            r[i] = new ReadNumEx(fr);
+            Thread t1 = new Thread(r[i]);
             t1.start();
-            lno = r.getNo() + lno;
+            lno = r[i].getNo() + lno;
         }
         File fout = new File(f.getPath() + "total.txt");
         FileOutputStream fos = new FileOutputStream(fout);
@@ -20,8 +21,9 @@ public class NumUseEx {
         ch = (lno + "").toCharArray();
         int j = 0;
         while (ch != null) {
-            fos.write(ch[0]);
+            fos.write(ch[j]);
             j++;
         }
+
     }
 }
