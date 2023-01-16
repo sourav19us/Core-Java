@@ -1,0 +1,3 @@
+We can prevent the execution of a thread by using one 
+of the following methods of the Thread class. 
+All three methods will be used to prevent the thread from execution.
