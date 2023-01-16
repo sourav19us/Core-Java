@@ -11,7 +11,7 @@ public class UseEx {
         Read r[] = new Read[arr.length];
         Write w[] = new Write[arr.length];
         for (int i = 0; i < arr.length; i++) {
-            f1[i] = new File(f.getPath() + arr[i]);
+            f1[i] = new File(f.getPath() + "\\" + arr[i]);
             tfx[i] = new TextFilesEx();
 
             r[i] = new Read(tfx[i], f1[i]);
