@@ -35,6 +35,8 @@ public class ReadNumEx implements Runnable {
         } catch (IOException e) {
             System.out.println(e.getMessage());
         }
+
+        notify();
     }
 
     public long getNo() {
