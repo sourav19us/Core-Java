@@ -27,7 +27,7 @@ public class TextFilesEx {
         }
         ft = false;
         bis.close();
-        notify();
+        notifyAll();
     }
 
     synchronized public void writeFile(File f) throws IOException {
@@ -46,7 +46,7 @@ public class TextFilesEx {
         for (Integer integer : vec) {
             bos.write(integer);
         }
-        notify();
+        notifyAll();
         bos.flush();
         bos.close();
         ft = true;
