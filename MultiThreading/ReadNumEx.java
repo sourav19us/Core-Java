@@ -1,3 +1,4 @@
+import java.io.DataInputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -18,19 +19,15 @@ public class ReadNumEx implements Runnable {
         char ch[] = new char[200];
         int chr;
         String str;
-        int i = 0;
+
         try {
 
             FileInputStream fis = new FileInputStream(f);
-            while ((chr = fis.read()) != -1) {
-                if ((char) chr != '\n') {
-                    ch[i] = (char) chr;
-                    i++;
-                } else {
-                    str = String.copyValueOf(ch, 0, i);
-                    no = no + Long.parseLong(str.trim());
-                    i = 0;
-                }
+            DataInputStream dis = new DataInputStream(fis);
+            while (dis.readLine() != null) {
+                str = dis.readLine();
+                no = no + Long.parseLong(str.trim());
+
             }
             fis.close();
         } catch (IOException e) {
@@ -38,6 +35,7 @@ public class ReadNumEx implements Runnable {
         }
 
         notify();
+
     }
 
     public long getNo() {

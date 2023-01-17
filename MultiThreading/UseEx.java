@@ -11,18 +11,19 @@ public class UseEx {
         Read r[] = new Read[arr.length];
         Write w[] = new Write[arr.length];
         for (int i = 0; i < arr.length; i++) {
+
             f1[i] = new File(f.getPath() + "\\" + arr[i]);
             tfx[i] = new TextFilesEx();
 
             r[i] = new Read(tfx[i], f1[i]);
-            r[i].start();
-            try {
-                r[i].join();
-            } catch (Exception e) {
-                System.out.println(e.getMessage());
-            }
+            r[i].setPriority(Thread.MAX_PRIORITY);
             w[i] = new Write(tfx[i], f1[i]);
+            w[i].setPriority(Thread.MIN_PRIORITY);
+        }
+        for (int i = 0; i < arr.length; i++) {
+            r[i].start();
             w[i].start();
         }
+
     }
 }
