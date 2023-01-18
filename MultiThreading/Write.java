@@ -11,7 +11,7 @@ public class Write extends Thread {
     }
 
     public void run() {
-
+        Thread.yield();
         try {
 
             wf.writeFile(filew);

@@ -11,7 +11,7 @@ public class Read extends Thread {
     }
 
     public void run() {
-
+        Thread.yield();
         try {
 
             rf.readfile(file);
