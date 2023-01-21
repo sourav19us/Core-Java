@@ -19,11 +19,11 @@ public class LayoutEx2 {
         p.add(sb2);
         p.add(sb3);
         p.setBackground(Color.BLACK);
-        bl.addLayoutComponent(p, BorderLayout.EAST);
+        bl.add(p, BorderLayout.EAST);
         Panel p2 = new Panel();
         p2.add(new Label());
         p2.setBackground(Color.WHITE);
-        bl.addLayoutComponent(p2, BorderLayout.CENTER);
+        bl.add(p2, BorderLayout.CENTER);
         f.add(p);
         f.add(p2);
 
