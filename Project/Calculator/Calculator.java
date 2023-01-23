@@ -2,8 +2,6 @@ import java.awt.*;
 import java.awt.event.*;
 import java.util.Vector;
 
-import javax.swing.event.AncestorListener;
-
 public class Calculator implements ActionListener {
     Frame f;
     Button b1, b2, b3, b4, b5, b6, b7, b8, b9, b10, b11, b12, b13, b14, b15, b16;
@@ -21,7 +19,7 @@ public class Calculator implements ActionListener {
 
         f.setVisible(true);
         BorderLayout bl = new BorderLayout();
-        f.setLayout(bl);
+        f.setLayout(new BorderLayout());
         p1 = new Panel();
         p1.setBackground(Color.white);
         p2 = new Panel();
@@ -208,10 +206,10 @@ public class Calculator implements ActionListener {
                         vec1.remove(d);
                         vec1.add(d, r + "");
                         vec1.remove(d + 1);
-                        System.out.println(r);
-                        for (Object o : vec1) {
-                            System.out.println(o);
-                        }
+                        // System.out.println(r);
+                        // for (Object o : vec1) {
+                        // System.out.println(o);
+                        // }
                         continue;
 
                     }
@@ -222,10 +220,10 @@ public class Calculator implements ActionListener {
                         vec1.remove(m);
                         vec1.add(m, r + "");
                         vec1.remove(m + 1);
-                        System.out.println(r);
-                        for (Object o : vec1) {
-                            System.out.println(o);
-                        }
+                        // System.out.println(r);
+                        // for (Object o : vec1) {
+                        // System.out.println(o);
+                        // }
                         continue;
 
                     }
@@ -236,10 +234,10 @@ public class Calculator implements ActionListener {
                         vec1.remove(a);
                         vec1.add(a, r + "");
                         vec1.remove(a + 1);
-                        System.out.println(r);
-                        for (Object o : vec1) {
-                            System.out.println(o);
-                        }
+                        // System.out.println(r);
+                        // for (Object o : vec1) {
+                        // System.out.println(o);
+                        // }
                         continue;
 
                     }
@@ -250,10 +248,10 @@ public class Calculator implements ActionListener {
                         vec1.remove(s1);
                         vec1.add(s1, r + "");
                         vec1.remove(s1 + 1);
-                        System.out.println(r);
-                        for (Object o : vec1) {
-                            System.out.println(o);
-                        }
+                        // System.out.println(r);
+                        // for (Object o : vec1) {
+                        // System.out.println(o);
+                        // }
                         continue;
 
                     }
