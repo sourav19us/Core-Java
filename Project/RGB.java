@@ -19,6 +19,9 @@ public class RGB implements AdjustmentListener {
         sb1 = new Scrollbar(Scrollbar.VERTICAL, 10, 5, 0, 260);
         sb2 = new Scrollbar(Scrollbar.VERTICAL, 90, 5, 0, 260);
         sb3 = new Scrollbar(Scrollbar.VERTICAL, 40, 5, 0, 260);
+        sb1.addAdjustmentListener(this);
+        sb2.addAdjustmentListener(this);
+        sb3.addAdjustmentListener(this);
         GridLayout gl = new GridLayout(1, 0);
         p1 = new Panel();
         p1.setLayout(gl);
