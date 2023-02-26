@@ -50,11 +50,11 @@ public class LayoutEx1 {
         p2.add(b14);
         p2.add(b15);
         p2.add(b16);
-        bl.addLayoutComponent(p1, BorderLayout.NORTH);
-        bl.addLayoutComponent(p2, BorderLayout.CENTER);
+        f.add(p1, BorderLayout.NORTH);
+        f.add(p2, BorderLayout.CENTER);
 
         p2.setBackground(Color.gray);
-        f.add(p1);
-        f.add(p2);
+        // f.add(p1);
+        // f.add(p2);
     }
 }

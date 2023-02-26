@@ -6,6 +6,7 @@ public class TextAreaEx {
         f.setSize(400, 500);
         f.setLayout(new FlowLayout());
         TextArea ta = new TextArea("This is a text Area ", 25, 25, TextArea.SCROLLBARS_BOTH);
+        ta.select(0, 5);
         f.add(ta);
         f.setVisible(true);
     }
