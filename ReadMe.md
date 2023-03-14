@@ -63,3 +63,28 @@
     - If we access a static variable without the class name, the compiler will automatically append the class name.
 
 ---
+
+---
+
+public class Main
+{
+
+public static String msg(String s){
+return s;
+}
+
+public static void display(String s1){
+System.out.printf(s1);
+System.out.printf("\n");
+}
+
+public static void main(String[] args) {
+
+display(msg("hi sourav"));
+display(msg("hi varun"));
+display(msg("hi kuntal"));
+
+}
+}
+
+---
