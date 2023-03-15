@@ -13,7 +13,7 @@ public class Editor implements ActionListener {
 
     public Editor() {
         f = new Frame("Editor");
-        f.setSize(500, 500);
+        f.setSize(1000, 700);
         f.setVisible(true);
         ta = new TextArea();
         mb = new MenuBar();
@@ -61,6 +61,11 @@ public class Editor implements ActionListener {
 
     public static TextArea getTextArea() {
         return ta;
+    }
+
+    public static void TextSlecte(int a, int b) {
+        ta.select(a, b);
+        System.out.println("Start = " + ta.getSelectionStart() + "End = " + ta.getSelectionEnd());
     }
 
     public static void setTextArea(String str1) {
@@ -176,6 +181,7 @@ public class Editor implements ActionListener {
             FFrame ff = new FFrame();
         }
         if (str.equals("Find & Replace")) {
+            FRFrame ff = new FRFrame();
         }
         if (str.equals("Exit")) {
             System.exit(0);
@@ -184,5 +190,7 @@ public class Editor implements ActionListener {
 
     public static void main(String[] args) {
         Editor d = new Editor();
+        // TextArea t11 = ta;
+        // t11.select(59, 63);
     }
 }
