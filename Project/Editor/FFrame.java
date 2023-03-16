@@ -1,4 +1,4 @@
-package Editor;
+// package Editor;
 
 import java.awt.*;
 import java.awt.event.*;
@@ -7,7 +7,7 @@ import java.util.Vector;
 import java.util.regex.*;
 
 public class FFrame extends WindowAdapter implements ActionListener {
-    Frame f1;
+    static Frame f1;
     TextField tf;
     Vector<Integer> vec1 = new Vector<Integer>();
     Vector<Integer> vec2 = new Vector<Integer>();
@@ -18,7 +18,6 @@ public class FFrame extends WindowAdapter implements ActionListener {
         f1 = new Frame();
         f1 = new Frame("Find");
         f1.setSize(500, 120);
-        f1.setVisible(true);
         f1.setLayout(new GridBagLayout());
         GridBagConstraints gbl = new GridBagConstraints();
         gbl.gridx = 0;
@@ -42,7 +41,13 @@ public class FFrame extends WindowAdapter implements ActionListener {
         gbl.gridx = 1;
         gbl.gridy = 2;
         f1.add(b2, gbl);
+        // f1.setFocusableWindowState(false);
+        f1.setVisible(true);
 
+    }
+
+    public static Frame getEFrame() {
+        return f1;
     }
 
     public void actionPerformed(ActionEvent e3) {
@@ -59,7 +64,7 @@ public class FFrame extends WindowAdapter implements ActionListener {
 
                 TextArea ta1 = Editor.getTextArea();
                 String st = ta1.getText();
-                String st2 = tf.getText();
+                String st2 = tf.getText().trim();
                 Pattern p = Pattern.compile(st2);
                 Matcher m = p.matcher(st);
 
@@ -83,8 +88,13 @@ public class FFrame extends WindowAdapter implements ActionListener {
             } else {
                 i = 0;
             }
-
-            // System.out.println(i);
+            // Editor.getEFrame().setFocusableWindowState(true); // <<<<<
+            // f1.setFocusableWindowState(false);
+            System.out.println(f1.isFocusableWindow());
+            // f1.setFocusableWindowState(false);
+            Editor.getTextArea().requestFocus();
+            // Editor.getEFrame().requestFocus();
+            System.out.println(Editor.getEFrame().isFocusableWindow());
             // }
 
         }

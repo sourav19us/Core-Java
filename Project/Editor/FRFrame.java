@@ -1,4 +1,4 @@
-package Editor;
+// package Editor;
 
 import java.awt.*;
 import java.awt.event.*;
@@ -18,7 +18,6 @@ public class FRFrame extends WindowAdapter implements ActionListener {
         f1 = new Frame();
         f1 = new Frame("Find");
         f1.setSize(500, 120);
-        f1.setVisible(true);
         f1.setLayout(new GridBagLayout());
         GridBagConstraints gbl = new GridBagConstraints();
         gbl.gridx = 0;
@@ -60,6 +59,7 @@ public class FRFrame extends WindowAdapter implements ActionListener {
         gbl.gridx = 4;
         gbl.gridy = 4;
         f1.add(b4, gbl);
+        f1.setVisible(true);
 
     }
 
@@ -76,7 +76,7 @@ public class FRFrame extends WindowAdapter implements ActionListener {
 
                 TextArea ta1 = Editor.getTextArea();
                 String st = ta1.getText();
-                String st2 = tf1.getText();
+                String st2 = tf1.getText().trim();
                 Pattern p = Pattern.compile(st2);
                 Matcher m = p.matcher(st);
 
@@ -100,7 +100,7 @@ public class FRFrame extends WindowAdapter implements ActionListener {
             } else {
                 i = 0;
             }
-
+            Editor.getTextArea().requestFocus();
             // System.out.println(i);
             // }
 
@@ -112,6 +112,14 @@ public class FRFrame extends WindowAdapter implements ActionListener {
             String st2 = tf1.getText();
             Pattern p = Pattern.compile(st2);
             Matcher m = p.matcher(st);
+
+            // vec1.clear();
+            // vec2.clear();
+            // while (m.find()) {
+            // System.out.println(m.start() + " " + m.end() + " " + m.group());
+            // vec1.add(m.start());
+            // vec2.add(m.end());
+            // }
 
             if (m.find()) {
 
@@ -126,6 +134,14 @@ public class FRFrame extends WindowAdapter implements ActionListener {
             // if (i < vec1.size()) {
             // Editor.getTextArea().select(vec1.get(0), vec2.get(0));
             // Editor ed = new Editor();
+            Editor.TextSlecte(vec1.get(i), vec2.get(i));
+
+            if (i < (vec1.size() - 1)) {
+                i++;
+            } else {
+                i = 0;
+            }
+            Editor.getTextArea().requestFocus();
 
         }
         if (str.equals("Replace All")) {

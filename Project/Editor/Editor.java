@@ -1,11 +1,11 @@
-package Editor;
+// package Editor;
 
 import java.awt.*;
 import java.awt.event.*;
 import java.io.*;
 
 public class Editor implements ActionListener {
-    Frame f;
+    static Frame f;
     MenuBar mb;
     Menu m1, m2, m3;
     MenuItem nw, opn, sve, sveas, ext, ct, cpy, pst, fd, fdr;
@@ -15,8 +15,8 @@ public class Editor implements ActionListener {
 
     public Editor() {
         f = new Frame("Editor");
-        f.setSize(1000, 700);
-        f.setVisible(true);
+        f.setSize(500, 700);
+
         ta = new TextArea();
         mb = new MenuBar();
         m1 = new Menu("File");
@@ -58,7 +58,13 @@ public class Editor implements ActionListener {
         mb.add(m2);
         f.add(ta);
         f.setMenuBar(mb);
+        // f.setFocusableWindowState(true); // <<<<<<<<<
+        f.setVisible(true); // this is last
 
+    }
+
+    public static Frame getEFrame() {
+        return f;
     }
 
     public static TextArea getTextArea() {
@@ -181,6 +187,7 @@ public class Editor implements ActionListener {
         }
         if (str.equals("Find")) {
             FFrame ff = new FFrame();
+            // FFrame.getEFrame().setFocusableWindowState(true); // <<<<<<<
         }
         if (str.equals("Find & Replace")) {
             FRFrame ff = new FRFrame();
