@@ -3,15 +3,18 @@
 import java.awt.*;
 import java.awt.event.*;
 import java.io.*;
+import java.util.Scanner;
 
-public class Editor implements ActionListener {
+public class Editor implements ActionListener, WindowListener {
     static Frame f;
     MenuBar mb;
     Menu m1, m2, m3;
     MenuItem nw, opn, sve, sveas, ext, ct, cpy, pst, fd, fdr;
     static TextArea ta;
     String spath;
-    int i = 0;
+    String path;
+    int i = 0, o = 0;
+    File fi;
 
     public Editor() {
         f = new Frame("Editor");
@@ -58,6 +61,7 @@ public class Editor implements ActionListener {
         mb.add(m2);
         f.add(ta);
         f.setMenuBar(mb);
+        f.addWindowListener(this);
         // f.setFocusableWindowState(true); // <<<<<<<<<
         f.setVisible(true); // this is last
 
@@ -80,27 +84,68 @@ public class Editor implements ActionListener {
         ta.setText(ta.getText() + str1);
     }
 
+    public void save() {
+
+        FileDialog fd = new FileDialog(f, "Save File ", FileDialog.SAVE);
+        fd.setVisible(true);
+
+        spath = fd.getDirectory() + fd.getFile();
+        System.out.println(spath);
+        if (spath.equals("nullnull")) {
+            System.exit(0);
+        }
+        try {
+            File f = new File(spath);
+            // Create a file writer
+            FileWriter wr = new FileWriter(f, false);
+
+            // Create buffered writer to write
+            BufferedWriter w = new BufferedWriter(wr);
+
+            // Write
+            w.write(ta.getText());
+
+            w.flush();
+            w.close();
+        } catch (Exception evt) {
+            evt.printStackTrace();
+        }
+
+    }
+
     public void actionPerformed(ActionEvent e) {
         String str = e.getActionCommand();
         System.out.println(str + " was clicked");
         if (str.equals("New")) {
-            ta.setText("");
+            System.out.println("text in TaxtArea" + ta.getText());
+            if (ta.getText() == "") {
+                ta.setText("");
+            } else {
+                save();
+
+                ta.setText("");
+            }
             i = 0;
         }
         // >>>>>>>> Opne <<<<<<<<<<
         if (str.equals("Open")) {
+            if (!ta.getText().equals("")) {
+                save();
+            }
             ta.setText("");
             FileDialog fd = new FileDialog(f, "LOAD File ", FileDialog.LOAD);
             fd.setVisible(true);
-            String path;
+
             path = fd.getDirectory() + fd.getFile();
             System.out.println(path);
-            File fi = new File(path);
+            fi = new File(path);
+            o++;
+            StringBuffer strb = new StringBuffer();
             FileInputStream fis;
             BufferedInputStream bis;
-
+            /* */
             int ch;
-
+            // Method 1
             if (fi.exists()) {
                 try {
                     fis = new FileInputStream(fi);
@@ -108,8 +153,10 @@ public class Editor implements ActionListener {
 
                     while ((ch = bis.read()) != -1) {
                         String st = "" + (char) ch;
-                        ta.setText(ta.getText() + st);
+                        // ta.setText(ta.getText() + st);
+                        strb.append(st);
                     }
+                    ta.setText("" + strb);
 
                     fis.close();
                 } catch (Exception e1) {
@@ -119,49 +166,82 @@ public class Editor implements ActionListener {
             } else {
                 System.out.println("file not found");
             }
-            i++;
+            // i++;
+
+            // Method 2
+
+            // try {
+            // Scanner sc = new Scanner(fi);
+            // while (sc.hasNextLine()) {
+            // // System.out.println(sc.nextLine());
+            // // ta.setText(ta.getText() + "\n" + sc.nextLine());
+            // strb.append(sc.nextLine() + "\n");
+            // }
+            // ta.setText("" + strb);
+            // }
+
+            // catch (FileNotFoundException e1) {
+            // // TODO Auto-generated catch block
+            // e1.printStackTrace();
+            // }
+
+            // try {
+            // FileInputStream fis = new FileInputStream(fi);
+            // BufferedInputStream bis = new BufferedInputStream(fis);
+            // byte[] buffer = new byte[10000000];
+            // int read;
+            // while ((read = bis.read(buffer, 0, buffer.length)) != -1) {
+            // ta.setText(ta.getText() + "\n" + bis.read(buffer, 0, read));
+            // }
+            // } catch (Exception e2) {
+            // // TODO: handle exception
+            // e2.printStackTrace();
+            // }
         }
         // >>>>>>>>> Save <<<<<<<<<
         if (str.equals("Save")) {
-            DataOutputStream dos;
-            FileOutputStream fos;
-            if (i == 0) {
-
-                FileDialog fd = new FileDialog(f, "Save File ", FileDialog.SAVE);
-                fd.setVisible(true);
-
-                spath = fd.getDirectory() + fd.getFile();
-
-                try {
-                    File f = new File(spath);
-                    fos = new FileOutputStream(spath, true);
-                    dos = new DataOutputStream(fos);
-                    if (f.exists()) {
-
-                        String st = ta.getText();
-                        dos.writeChars(st);
-                        dos.close();
-                        i++;
-                    }
-                } catch (Exception e1) {
-                    System.out.println(e1.getMessage());
-                }
+            if (o == 0) {
+                save();
             } else {
-                File f = new File(spath);
-                System.out.println(spath);
-                f.delete();
+                if (fi.exists()) {
+                    fi.delete();
+                }
+                // DataOutputStream dos;
                 try {
-                    fos = new FileOutputStream(spath, true);
-                    dos = new DataOutputStream(fos);
-                    if (f.exists()) {
+                    File fl = new File(path);
 
-                        String st = ta.getText();
-                        dos.writeChars(st);
-                        dos.close();
-                    }
+                    // Create a file writer
+                    FileWriter wr = new FileWriter(fl, false);
+
+                    // Create buffered writer to write
+                    BufferedWriter w = new BufferedWriter(wr);
+
+                    // Write
+                    w.write(ta.getText());
+
+                    w.flush();
+                    w.close();
+
                 } catch (Exception e1) {
                     System.out.println(e1.getMessage());
                 }
+
+                // File f;
+                // try {
+                // f = new File(path);
+                // FileOutputStream fos = new FileOutputStream(f);
+                // BufferedOutputStream bos = new BufferedOutputStream(fos, 2000000000);
+                // byte[] buffer = new byte[10000000];
+                // bos.write(buffer, 0, buffer.length);
+                // bos.flush();
+                // bos.close();
+                // fos.close();
+
+                // } catch (Exception e2) {
+                // // TODO: handle exception
+                // e2.printStackTrace();
+                // }
+                // }
             }
         }
         // >>>>>>>>> Save As <<<<<<<<<
@@ -180,6 +260,7 @@ public class Editor implements ActionListener {
                     String st = ta.getText();
                     dos.writeChars(st);
                     dos.close();
+                    fos.close();
                 }
             } catch (Exception e1) {
                 System.out.println(e1.getMessage());
@@ -193,8 +274,62 @@ public class Editor implements ActionListener {
             FRFrame ff = new FRFrame();
         }
         if (str.equals("Exit")) {
+            save();
             System.exit(0);
         }
+    }
+
+    @Override
+    public void windowOpened(WindowEvent e) {
+        // TODO Auto-generated method stub
+        // throw new UnsupportedOperationException("Unimplemented method
+        // 'windowOpened'");
+    }
+
+    @Override
+    public void windowClosing(WindowEvent e) {
+        // TODO Auto-generated method stub
+        // throw new UnsupportedOperationException("Unimplemented method
+        // 'windowClosing'");
+        save();
+        System.out.println("Clicked on Windowclosing");
+        System.exit(0);
+    }
+
+    @Override
+    public void windowClosed(WindowEvent e) {
+        // TODO Auto-generated method stub
+        // throw new UnsupportedOperationException("Unimplemented method
+        // 'windowClosed'");
+
+    }
+
+    @Override
+    public void windowIconified(WindowEvent e) {
+        // TODO Auto-generated method stub
+        // throw new UnsupportedOperationException("Unimplemented method
+        // 'windowIconified'");
+    }
+
+    @Override
+    public void windowDeiconified(WindowEvent e) {
+        // TODO Auto-generated method stub
+        // throw new UnsupportedOperationException("Unimplemented method
+        // 'windowDeiconified'");
+    }
+
+    @Override
+    public void windowActivated(WindowEvent e) {
+        // TODO Auto-generated method stub
+        // throw new UnsupportedOperationException("Unimplemented method
+        // 'windowActivated'");
+    }
+
+    @Override
+    public void windowDeactivated(WindowEvent e) {
+        // TODO Auto-generated method stub
+        // throw new UnsupportedOperationException("Unimplemented method
+        // 'windowDeactivated'");
     }
 
     public static void main(String[] args) {
@@ -203,4 +338,5 @@ public class Editor implements ActionListener {
 
         // t11.select(59, 63);
     }
+
 }

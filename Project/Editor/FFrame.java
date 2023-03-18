@@ -56,24 +56,23 @@ public class FFrame extends WindowAdapter implements ActionListener {
         if (str.equals("Close")) {
 
             // System.exit(1);
-
+            vec1.clear();
+            vec2.clear();
             f1.setVisible(false);
         }
         if (str.equals("FindNext")) {
-            if (i == 0) {
 
-                TextArea ta1 = Editor.getTextArea();
-                String st = ta1.getText();
-                String st2 = tf.getText().trim();
-                Pattern p = Pattern.compile(st2);
-                Matcher m = p.matcher(st);
+            TextArea ta1 = Editor.getTextArea();
+            String st = ta1.getText();
+            String st2 = tf.getText().trim();
+            Pattern p = Pattern.compile(st2);
+            Matcher m = p.matcher(st);
 
-                while (m.find()) {
+            while (m.find()) {
 
-                    System.out.println(m.start() + " " + m.end() + " " + m.group());
-                    vec1.add(m.start());
-                    vec2.add(m.end());
-                }
+                System.out.println(m.start() + " " + m.end() + " " + m.group());
+                vec1.add(m.start());
+                vec2.add(m.end());
             }
 
             System.out.println(vec1.size());
@@ -96,6 +95,8 @@ public class FFrame extends WindowAdapter implements ActionListener {
             // Editor.getEFrame().requestFocus();
             System.out.println(Editor.getEFrame().isFocusableWindow());
             // }
+            vec1.clear();
+            vec2.clear();
 
         }
     }

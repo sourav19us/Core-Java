@@ -69,24 +69,28 @@ public class FRFrame extends WindowAdapter implements ActionListener {
         if (str.equals("Close")) {
             // System.exit(1);
 
+            vec1.clear();
+            vec2.clear();
             f1.setVisible(false);
         }
         if (str.equals("FindNext")) {
-            if (i == 0) {
+            // if (i == 0) {
+            vec1.clear();
+            vec2.clear();
 
-                TextArea ta1 = Editor.getTextArea();
-                String st = ta1.getText();
-                String st2 = tf1.getText().trim();
-                Pattern p = Pattern.compile(st2);
-                Matcher m = p.matcher(st);
+            TextArea ta1 = Editor.getTextArea();
+            String st = ta1.getText();
+            String st2 = tf1.getText().trim();
+            Pattern p = Pattern.compile(st2);
+            Matcher m = p.matcher(st);
 
-                while (m.find()) {
+            while (m.find()) {
 
-                    System.out.println(m.start() + " " + m.end() + " " + m.group());
-                    vec1.add(m.start());
-                    vec2.add(m.end());
-                }
+                System.out.println(m.start() + " " + m.end() + " " + m.group());
+                vec1.add(m.start());
+                vec2.add(m.end());
             }
+            // }
 
             System.out.println(vec1.size());
             System.out.println(vec2.size());
@@ -113,8 +117,8 @@ public class FRFrame extends WindowAdapter implements ActionListener {
             Pattern p = Pattern.compile(st2);
             Matcher m = p.matcher(st);
 
-            // vec1.clear();
-            // vec2.clear();
+            vec1.clear();
+            vec2.clear();
             // while (m.find()) {
             // System.out.println(m.start() + " " + m.end() + " " + m.group());
             // vec1.add(m.start());
@@ -123,9 +127,9 @@ public class FRFrame extends WindowAdapter implements ActionListener {
 
             if (m.find()) {
 
-                // System.out.println(m.start() + " " + m.end() + " " + m.group());
-                // vec1.add(m.start());
-                // vec2.add(m.end());
+                System.out.println(m.start() + " " + m.end() + " " + m.group());
+                vec1.add(m.start());
+                vec2.add(m.end());
                 Editor.getTextArea().setText(m.replaceFirst(tf2.getText()));
             }
 
@@ -134,13 +138,13 @@ public class FRFrame extends WindowAdapter implements ActionListener {
             // if (i < vec1.size()) {
             // Editor.getTextArea().select(vec1.get(0), vec2.get(0));
             // Editor ed = new Editor();
-            Editor.TextSlecte(vec1.get(i), vec2.get(i));
+            Editor.getTextArea().replaceRange(st, vec1.get(0), vec2.get(0));
 
-            if (i < (vec1.size() - 1)) {
-                i++;
-            } else {
-                i = 0;
-            }
+            // if (i < (vec1.size() - 1)) {
+            // i++;
+            // } else {
+            // i = 0;
+            // }
             Editor.getTextArea().requestFocus();
 
         }
