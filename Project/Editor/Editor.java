@@ -228,7 +228,7 @@ public class Editor implements ActionListener, WindowListener {
 
                     // Create buffered writer to write
                     BufferedWriter w = new BufferedWriter(wr);
-
+                    System.out.println("File  <<<<<<<<<< ");
                     // Write
                     w.write(ta.getText());
 

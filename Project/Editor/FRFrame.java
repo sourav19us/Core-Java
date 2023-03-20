@@ -155,7 +155,7 @@ public class FRFrame extends WindowAdapter implements ActionListener {
             System.out.println("startingPoint - tf2.getText().length() = " + (startingPoint - tf2.getText().length()));
             if (startingPoint > 0) {
                 Editor.getTextArea().replaceText(tf2.getText(), startingPoint,
-                        (startingPoint + tf2.getText().length()));
+                        (startingPoint + tf1.getText().length()));
             } else {
                 f1.requestFocus();
             }
