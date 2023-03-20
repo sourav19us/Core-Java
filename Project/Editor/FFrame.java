@@ -11,7 +11,7 @@ public class FFrame extends WindowAdapter implements ActionListener {
     TextField tf;
     Vector<Integer> vec1 = new Vector<Integer>();
     Vector<Integer> vec2 = new Vector<Integer>();
-    int i = 0;
+    int i = 0, index = 0;
     String st3;
 
     public FFrame() {
@@ -64,39 +64,57 @@ public class FFrame extends WindowAdapter implements ActionListener {
 
             TextArea ta1 = Editor.getTextArea();
             String st = ta1.getText();
-            String st2 = tf.getText().trim();
-            Pattern p = Pattern.compile(st2);
-            Matcher m = p.matcher(st);
+            String st2 = tf.getText();
+            st = st.replace("\r", "");
+            st = st.replace("\n", " ");
+            // Pattern p = Pattern.compile(st2);
+            // Matcher m = p.matcher(st);
 
-            while (m.find()) {
+            // while (m.find()) {
 
-                System.out.println(m.start() + " " + m.end() + " " + m.group());
-                vec1.add(m.start());
-                vec2.add(m.end());
-            }
+            // // System.out.println(m.start() + " " + m.end() + " " + m.group());
+            // vec1.add(m.start());
+            // vec2.add(m.end());
+            // }
 
-            System.out.println(vec1.size());
-            System.out.println(vec2.size());
+            // System.out.println(vec1.size());
+            // System.out.println(vec2.size());
             // if (i < vec1.size()) {
             // Editor.getTextArea().select(vec1.get(0), vec2.get(0));
-            // Editor ed = new Editor();
-            Editor.TextSlecte(vec1.get(i), vec2.get(i));
 
-            if (i < (vec1.size() - 1)) {
-                i++;
-            } else {
-                i = 0;
+            // if (vec1.size() != 0) {
+
+            // if (i < (vec1.size())) {
+            // Editor.getTextArea().select(vec1.get(i), vec2.get(i));
+            // i++;
+            // } else {
+            // i = 0;
+            // }
+            // }
+
+            index = st.indexOf(st2, index);
+
+            Editor.getTextArea().select(index, (st2.length() + index));
+            System.out.println("starting  = " + index);
+            index = index + st2.length();
+
+            if (st.indexOf(st2, index) == -1) {
+                index = 0;
             }
+            if (index >= st.length()) {
+                index = 0;
+            }
+
             // Editor.getEFrame().setFocusableWindowState(true); // <<<<<
             // f1.setFocusableWindowState(false);
-            System.out.println(f1.isFocusableWindow());
+            // System.out.println(f1.isFocusableWindow());
             // f1.setFocusableWindowState(false);
             Editor.getTextArea().requestFocus();
             // Editor.getEFrame().requestFocus();
-            System.out.println(Editor.getEFrame().isFocusableWindow());
+            // System.out.println(Editor.getEFrame().isFocusableWindow());
             // }
-            vec1.clear();
-            vec2.clear();
+            // vec1.clear();
+            // vec2.clear();
 
         }
     }

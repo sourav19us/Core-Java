@@ -13,8 +13,9 @@ public class Editor implements ActionListener, WindowListener {
     static TextArea ta;
     String spath;
     String path;
-    int i = 0, o = 0;
+    int i = 0, o = 0, s = 0;
     File fi;
+    String TAstr;
 
     public Editor() {
         f = new Frame("Editor");
@@ -63,6 +64,7 @@ public class Editor implements ActionListener, WindowListener {
         f.setMenuBar(mb);
         f.addWindowListener(this);
         // f.setFocusableWindowState(true); // <<<<<<<<<
+        ta.setEditable(true);
         f.setVisible(true); // this is last
 
     }
@@ -91,24 +93,29 @@ public class Editor implements ActionListener, WindowListener {
 
         spath = fd.getDirectory() + fd.getFile();
         System.out.println(spath);
-        if (spath.equals("nullnull")) {
-            System.exit(0);
-        }
-        try {
-            File f = new File(spath);
-            // Create a file writer
-            FileWriter wr = new FileWriter(f, false);
+        while (true) {
+            if (spath.equals("nullnull")) {
+                // System.exit(0);
+                fd.setVisible(false);
+                break;
+            }
+            try {
+                File f = new File(spath);
+                // Create a file writer
+                FileWriter wr = new FileWriter(f, false);
 
-            // Create buffered writer to write
-            BufferedWriter w = new BufferedWriter(wr);
+                // Create buffered writer to write
+                BufferedWriter w = new BufferedWriter(wr);
 
-            // Write
-            w.write(ta.getText());
+                // Write
+                w.write(ta.getText());
 
-            w.flush();
-            w.close();
-        } catch (Exception evt) {
-            evt.printStackTrace();
+                w.flush();
+                w.close();
+            } catch (Exception evt) {
+                evt.printStackTrace();
+            }
+            break;
         }
 
     }
@@ -117,15 +124,20 @@ public class Editor implements ActionListener, WindowListener {
         String str = e.getActionCommand();
         System.out.println(str + " was clicked");
         if (str.equals("New")) {
-            System.out.println("text in TaxtArea" + ta.getText());
-            if (ta.getText() == "") {
+            // System.out.println("text in TaxtArea" + ta.getText());
+            // if (ta.getText() == "") {
+            // ta.setText("");
+            // } else {
+            // save();
+
+            // ta.setText("");
+            // }
+            // i = 0;
+            if (ta.getText().equals(TAstr)) {
                 ta.setText("");
             } else {
                 save();
-
-                ta.setText("");
             }
-            i = 0;
         }
         // >>>>>>>> Opne <<<<<<<<<<
         if (str.equals("Open")) {
@@ -162,7 +174,7 @@ public class Editor implements ActionListener, WindowListener {
                 } catch (Exception e1) {
                     System.out.println(e1.getMessage());
                 }
-
+                TAstr = ta.getText();
             } else {
                 System.out.println("file not found");
             }
@@ -200,6 +212,7 @@ public class Editor implements ActionListener, WindowListener {
         }
         // >>>>>>>>> Save <<<<<<<<<
         if (str.equals("Save")) {
+            TAstr = ta.getText();
             if (o == 0) {
                 save();
             } else {
@@ -291,9 +304,16 @@ public class Editor implements ActionListener, WindowListener {
         // TODO Auto-generated method stub
         // throw new UnsupportedOperationException("Unimplemented method
         // 'windowClosing'");
-        save();
-        System.out.println("Clicked on Windowclosing");
-        System.exit(0);
+        if (!TAstr.equals(ta.getText())) {
+
+            save();
+            System.out.println("Clicked on Windowclosing");
+            System.exit(0);
+        } else {
+            System.out.println("Clicked on Windowclosing");
+            System.exit(0);
+
+        }
     }
 
     @Override
