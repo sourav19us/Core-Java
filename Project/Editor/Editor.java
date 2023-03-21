@@ -97,6 +97,7 @@ public class Editor implements ActionListener, WindowListener {
             if (spath.equals("nullnull")) {
                 // System.exit(0);
                 fd.setVisible(false);
+                ta.setText("");
                 break;
             }
             try {
@@ -304,15 +305,20 @@ public class Editor implements ActionListener, WindowListener {
         // TODO Auto-generated method stub
         // throw new UnsupportedOperationException("Unimplemented method
         // 'windowClosing'");
-        if (!TAstr.equals(ta.getText())) {
+        System.out.println(ta.getText());
+        TAstr = ta.getText();
+        if (TAstr != null) {
 
-            save();
-            System.out.println("Clicked on Windowclosing");
-            System.exit(0);
-        } else {
-            System.out.println("Clicked on Windowclosing");
-            System.exit(0);
+            if (!TAstr.equals(ta.getText())) {
 
+                save();
+                System.out.println("Clicked on Windowclosing");
+                System.exit(0);
+            } else {
+                System.out.println("Clicked on Windowclosing");
+                System.exit(0);
+
+            }
         }
     }
 
