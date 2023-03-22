@@ -11,11 +11,11 @@ public class Editor implements ActionListener, WindowListener {
     Menu m1, m2, m3;
     MenuItem nw, opn, sve, sveas, ext, ct, cpy, pst, fd, fdr;
     static TextArea ta;
-    String spath;
+    static String spath;
     String path;
     int i = 0, o = 0, s = 0;
     File fi;
-    String TAstr;
+    static String TAstr;
 
     public Editor() {
         f = new Frame("Editor");
@@ -65,6 +65,8 @@ public class Editor implements ActionListener, WindowListener {
         f.addWindowListener(this);
         // f.setFocusableWindowState(true); // <<<<<<<<<
         ta.setEditable(true);
+        ta.setText("");
+        TAstr = ta.getText();
         f.setVisible(true); // this is last
 
     }
@@ -86,7 +88,15 @@ public class Editor implements ActionListener, WindowListener {
         ta.setText(ta.getText() + str1);
     }
 
-    public void save() {
+    public static String getTAstr() {
+        return TAstr;
+    }
+
+    public static String getspath() {
+        return spath;
+    }
+
+    public static void save() {
 
         FileDialog fd = new FileDialog(f, "Save File ", FileDialog.SAVE);
         fd.setVisible(true);
@@ -97,7 +107,7 @@ public class Editor implements ActionListener, WindowListener {
             if (spath.equals("nullnull")) {
                 // System.exit(0);
                 fd.setVisible(false);
-                ta.setText("");
+                // ta.setText("");
                 break;
             }
             try {
@@ -118,6 +128,8 @@ public class Editor implements ActionListener, WindowListener {
             }
             break;
         }
+
+        TAstr = ta.getText();
 
     }
 
@@ -145,7 +157,7 @@ public class Editor implements ActionListener, WindowListener {
             if (!ta.getText().equals("")) {
                 save();
             }
-            ta.setText("");
+
             FileDialog fd = new FileDialog(f, "LOAD File ", FileDialog.LOAD);
             fd.setVisible(true);
 
@@ -179,6 +191,14 @@ public class Editor implements ActionListener, WindowListener {
             } else {
                 System.out.println("file not found");
             }
+
+            if (spath == "nullnull") {
+                if (path == "nullnull") {
+
+                } else {
+                    ta.setText("");
+                }
+            }
             // i++;
 
             // Method 2
@@ -210,6 +230,7 @@ public class Editor implements ActionListener, WindowListener {
             // // TODO: handle exception
             // e2.printStackTrace();
             // }
+            TAstr = ta.getText();
         }
         // >>>>>>>>> Save <<<<<<<<<
         if (str.equals("Save")) {
@@ -305,21 +326,11 @@ public class Editor implements ActionListener, WindowListener {
         // TODO Auto-generated method stub
         // throw new UnsupportedOperationException("Unimplemented method
         // 'windowClosing'");
-        System.out.println(ta.getText());
-        TAstr = ta.getText();
-        if (TAstr != null) {
+        // System.out.println(ta.getText());
+        // TAstr = ta.getText();
 
-            if (!TAstr.equals(ta.getText())) {
+        WCFrame wc = new WCFrame();
 
-                save();
-                System.out.println("Clicked on Windowclosing");
-                System.exit(0);
-            } else {
-                System.out.println("Clicked on Windowclosing");
-                System.exit(0);
-
-            }
-        }
     }
 
     @Override
